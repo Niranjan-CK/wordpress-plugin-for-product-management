@@ -129,7 +129,6 @@ function price_meta_box_callback( $post ) {
 					}
 				}
 			}
-
 		}
 		wp_localize_script(
 			'products-script',
