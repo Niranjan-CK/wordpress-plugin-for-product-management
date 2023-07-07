@@ -46,5 +46,6 @@ add_action( 'init', 'product_taxonomy', 10 );
 add_action( 'add_meta_boxes', 'price_meta_box' );
 add_action( 'save_post', 'save_price_meta_box_data', 10 );
 
+// Shortcodes.
 add_shortcode( 'products_grid', 'take_all_products' );
 add_shortcode( 'purchased_products', 'purchased_products' );
