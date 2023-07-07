@@ -21,13 +21,13 @@ function take_all_products() {
 			?>
 
 			<div class="card m-1 p-5" style="width:18rem; border-radius:10px;">
-			<p> <?php echo esc_html( the_post_thumbnail() ); ?> </p>
+			<p > <?php echo esc_html( the_post_thumbnail() ); ?> </p>
 		
-			<?php echo esc_html( the_title( '<h3>', '</h3>' ) ); ?>
+			<p class="mt-5"><?php echo esc_html( the_title( '<h3>', '</h3>' ) ); ?></p>
 			
 			<p><?php echo esc_html( the_content() ); ?>
 			
-			<p><?php echo esc_html( the_terms( get_the_ID(), 'product_category', 'Category: ', ', ', '' ) ); ?>
+			<p><?php echo esc_html( the_terms( get_the_ID(), 'product_category', 'Category: ', ', ', '' ) ); ?></p>
 			<?php
 
 			$price_array = get_post_meta( get_the_ID(), 'price', true );
@@ -35,8 +35,9 @@ function take_all_products() {
 			if ( is_array( $price_array ) ) {
 				foreach ( $price_array as $price_item ) {
 					foreach ( $price_item as $variable => $amount ) {
-						echo esc_html( $amount ) . '<br>';
+						echo esc_html('- '. $amount ) ;
 					}
+					echo'<br>';
 				}
 			}
 			?>
