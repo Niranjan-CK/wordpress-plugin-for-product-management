@@ -34,11 +34,15 @@ function take_all_products() {
 			// Check if $price_array is an array.
 			if ( is_array( $price_array ) ) {
 				foreach ( $price_array as $price_item ) {
+					$n = 0;
 					foreach ( $price_item as $variable => $amount ) {
-						echo esc_html( $amount . ' - ' );
+						if ( 0 !== $n % 2 ) {
+							echo ' - ';
+						}
+						echo esc_html( $amount );
+						++$n;
 					}
-
-					break;
+					echo '<br/>';
 				}
 			}
 			?>
@@ -133,8 +137,14 @@ function purchased_products() {
 			// Check if $price_array is an array.
 			if ( is_array( $price_array ) ) {
 				foreach ( $price_array as $price_item ) {
+					$n = 0;
 					foreach ( $price_item as $variable => $amount ) {
-						echo esc_html( '-' . $amount );
+
+						if ( 0 !== $n % 2 ) {
+							echo ' - ';
+						}
+						echo esc_html( $amount );
+						++$n;
 					}
 					echo '<br>';
 				}
