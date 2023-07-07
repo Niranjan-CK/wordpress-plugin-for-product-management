@@ -129,8 +129,9 @@ function purchased_products() {
 			if ( is_array( $price_array ) ) {
 				foreach ( $price_array as $price_item ) {
 					foreach ( $price_item as $variable => $amount ) {
-						echo esc_html( $amount ) . '<br>';
+						echo esc_html('-'. $amount ) ;
 					}
+					echo'<br>';
 				}
 			}
 
