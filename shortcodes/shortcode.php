@@ -35,9 +35,9 @@ function take_all_products() {
 			if ( is_array( $price_array ) ) {
 				foreach ( $price_array as $price_item ) {
 					foreach ( $price_item as $variable => $amount ) {
-						echo esc_html(  $amount.' - ' );
+						echo esc_html( $amount . ' - ' );
 					}
-					
+
 					break;
 				}
 			}
@@ -93,7 +93,7 @@ function handle_buy_now() {
 			$single_post_url = get_permalink( $product_id ); // Replace $post_id with the ID of the newly added post.
 
 			// Redirect the user to the single post page.
-			wp_redirect( $single_post_url );
+			wp_safe_redirect( $single_post_url );
 
 		}
 	}
