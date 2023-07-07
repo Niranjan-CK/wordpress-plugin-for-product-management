@@ -35,9 +35,10 @@ function take_all_products() {
 			if ( is_array( $price_array ) ) {
 				foreach ( $price_array as $price_item ) {
 					foreach ( $price_item as $variable => $amount ) {
-						echo esc_html( '- ' . $amount );
+						echo esc_html(  $amount.' - ' );
 					}
-					echo '<br>';
+					
+					break;
 				}
 			}
 			?>
@@ -75,8 +76,8 @@ function handle_buy_now() {
 			exit;
 		} else {
 			$product_id = $_POST['buy_product'];
-			// Add the product to the list of purchased items associated with the user.
-			// Your code to add the product to the user's purchased items goes here.
+			// // Add the product to the list of purchased items associated with the user.
+			// // Your code to add the product to the user's purchased items goes here.
 			$user_id         = get_current_user_id();
 			$purchased_items = get_user_meta( $user_id, 'purchased_items', true );
 
@@ -89,6 +90,10 @@ function handle_buy_now() {
 			update_user_meta( $user_id, 'purchased_items', $purchased_items );
 
 			// Redirect the user to a success page or any other desired action.
+			$single_post_url = get_permalink( $product_id ); // Replace $post_id with the ID of the newly added post.
+
+			// Redirect the user to the single post page.
+			wp_redirect( $single_post_url );
 
 		}
 	}
