@@ -31,20 +31,9 @@ function take_all_products() {
 			<?php
 
 			$price_array = get_post_meta( get_the_ID(), 'price', true );
+			product_price( $price_array );
 			// Check if $price_array is an array.
-			if ( is_array( $price_array ) ) {
-				foreach ( $price_array as $price_item ) {
-					$n = 0;
-					foreach ( $price_item as $variable => $amount ) {
-						if ( 0 !== $n % 2 ) {
-							echo ' - ';
-						}
-						echo esc_html( $amount );
-						++$n;
-					}
-					echo '<br/>';
-				}
-			}
+
 			?>
 
 		
@@ -59,6 +48,28 @@ function take_all_products() {
 		</div>
 		</div>
 		<?php
+	}
+}
+
+/**
+ *
+ *  Fetch all product price
+ *
+ * @param array $price_array array of price.
+ */
+function product_price( $price_array ) {
+	if ( is_array( $price_array ) ) {
+		foreach ( $price_array as $price_item ) {
+			$n = 0;
+			foreach ( $price_item as $variable => $amount ) {
+				if ( 0 !== $n % 2 ) {
+					echo ' - ';
+				}
+				echo esc_html( $amount );
+				++$n;
+			}
+			echo '<br/>';
+		}
 	}
 }
 
@@ -134,28 +145,11 @@ function purchased_products() {
 			
 			<?php
 			$price_array = get_post_meta( $product_id, 'price', true );
-			// Check if $price_array is an array.
-			if ( is_array( $price_array ) ) {
-				foreach ( $price_array as $price_item ) {
-					$n = 0;
-					foreach ( $price_item as $variable => $amount ) {
-
-						if ( 0 !== $n % 2 ) {
-							echo ' - ';
-						}
-						echo esc_html( $amount );
-						++$n;
-					}
-					echo '<br>';
-				}
-			}
-
+			product_price( $price_array );
 			?>
 			<a href="<?php echo esc_attr( wp_get_attachment_url( get_post_thumbnail_id( $product_id ) ) ); ?>" download id="download">
 				<button class="btn" name="download" value="<?php echo esc_attr( $product_id ); ?>">Download</button>
 			</a>
-
-		 
 		</div>
 			<?php
 
