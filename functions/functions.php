@@ -129,28 +129,19 @@ function price_meta_box_callback( $post ) {
 					}
 				}
 			}
+
 		}
+		wp_localize_script(
+			'products-script',
+			'price',
+			array(
+				'count' => $count_price,
+			)
+		);
 
 		?>
 		<span id="priceField"></span>
-		<button class="addPrice btn btn-primary"><?php echo esc_html( 'Add' ); ?></button>
-		<script>
-			var $ = jQuery.noConflict();
-			$(document).ready(function() {
-				var count = <?php echo esc_html( $count_price ); ?>;
-				$(".addPrice").click(function(){
-					count = count + 1;
-					$('#priceField').append('<p><input type="text" name="price['+count+'][variable]" value="" placeholder="type"/>  <input type="number" name="price['+count+'][amount]" value="" placeholder="amount"/><btn class="btn btn-primary remove">Remove</btn></p>');
-					return false;
-				})
-				$(document).on('click', '.remove', function() {
-					$(this).parent().remove();
-				});
-
-				
-				
-			});
-		</script>
+		<button class="addPrice btn btn-primary" ><?php echo esc_html( 'Add' ); ?></button>
 
 
 	</div>
