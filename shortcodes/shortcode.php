@@ -10,17 +10,15 @@ function take_all_products() {
 
 	$products = new WP_Query( array( 'post_type' => 'article' ) );
 
-	if ( $products->have_posts() )
-	{
+	if ( $products->have_posts() ) {
 		?>
 		<div class="container">
 			<div class="row row-cols-3">
 				<?php
 
-					while ( $products->have_posts() ) 
-					{
-						$products->the_post();
-						?>
+				while ( $products->have_posts() ) {
+					$products->the_post();
+					?>
 
 						<div class="card m-1 p-5" style="width:18rem; border-radius:10px;">
 							<p> <?php echo esc_html( the_post_thumbnail() ); ?> </p>
@@ -30,17 +28,17 @@ function take_all_products() {
 							<p> <?php echo esc_html( the_content() ); ?> </p>
 							
 							<p> <?php echo esc_html( the_terms( get_the_ID(), 'product_category', 'Category: ', ', ', '' ) ); ?> </p>
-							<?php
-								$price_array = get_post_meta( get_the_ID(), 'price', true );
-								product_price( $price_array );
-							?>
+						<?php
+							$price_array = get_post_meta( get_the_ID(), 'price', true );
+							product_price( $price_array );
+						?>
 							<form method="post">
-								<?php wp_nonce_field( 'buy-now-nonce', 'buy-now-nonce' ); ?>
+							<?php wp_nonce_field( 'buy-now-nonce', 'buy-now-nonce' ); ?>
 								<button class="btn " name="buy_product" value="<?php echo get_the_ID(); ?>">Buy Now</button>
 							</form>
 						</div>
 						<?php
-					}
+				}
 				?>
 			</div>
 		</div>
@@ -80,16 +78,13 @@ function handle_buy_now() {
 	if ( ! isset( $_POST['buy-now-nonce'] ) || ! wp_verify_nonce( $_POST['buy-now-nonce'], 'buy-now-nonce' ) ) {
 		return;
 	}
-	if ( isset( $_POST['buy_product'] ) )
-	{
+	if ( isset( $_POST['buy_product'] ) ) {
 
 		if ( ! is_user_logged_in() ) {
 			// Redirect the user to the login page.
 			wp_safe_redirect( wp_login_url() );
 			exit;
-		} 
-		else 
-		{
+		} else {
 			$product_id = $_POST['buy_product'];
 			// Add the product to the list of purchased items associated with the user.
 			// Your code to add the product to the user's purchased items goes here.
@@ -121,8 +116,7 @@ function purchased_products() {
 	$user_id         = get_current_user_id();
 	$purchased_items = get_user_meta( $user_id, 'purchased_items', true );
 
-	if ( ! empty( $purchased_items ) && is_array( $purchased_items ) ) 
-	{
+	if ( ! empty( $purchased_items ) && is_array( $purchased_items ) ) {
 		?>
 
 		<div class="conatiner row row-cols-33 ">
@@ -155,9 +149,7 @@ function purchased_products() {
 			<?php
 
 		}
-	} 
-	else 
-	{
+	} else {
 		?>
 		<p>You have not purchased any products yet.</p>
 		<?php
