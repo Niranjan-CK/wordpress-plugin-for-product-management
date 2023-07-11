@@ -57,7 +57,7 @@ function take_all_products() {
 							?>
 								
 							<?php wp_nonce_field( 'cart-now-nonce', 'cart-now-nonce' ); ?>
-								<button class="btn " name="cart_product" value="<?php echo get_the_ID(); ?>">Cart</button>
+								<button class="btn " name="cart_product" value="<?php echo get_the_ID(); ?>">Add to Cart</button>
 							</form>
 						</div>
 						<?php
